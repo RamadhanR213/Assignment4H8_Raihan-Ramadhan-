@@ -1,0 +1,94 @@
+.profil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #04c4fffe;
+    background-color: #fffbf4;
+    margin: 90px;
+}
+
+.img {
+    flex-basis: 10%;
+    text-align: center;
+}
+
+.nama {
+    flex-basis: 30%;
+    text-align: left;
+}
+
+.status-column {
+    flex-basis: 40%;
+    text-align: left;
+}
+
+.foto-profil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.button {
+    margin-top: 10px;
+}
+
+
+#buttonForm {
+    display: block;
+    border: 1px solid #fffbf4;
+    margin-top: 20px;
+    background-color: #fffbf4;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.edit {
+    background-color: blue;
+    color: #fffbf4;
+    border-color: blue;
+    margin-right: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.resume {
+    background-color: green;
+    color: #fffbf4;
+    border-color: green;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+#editForm {
+    display: none; 
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+#editForm input {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #fffbf4;
+    border-radius: 4px;
+}

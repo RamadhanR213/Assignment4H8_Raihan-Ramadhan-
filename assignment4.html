@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assignment4.css">
+</head>
+<body>
+    <div class="profil">
+        <div class="img">
+            <img src="foto-pribadi.jpg" alt="Foto Pribadi" class="foto-profil">
+        </div>
+        <div class="nama">
+            <h1 id="username">Raihan Ramadhan</h1>
+            <p id="userRole">Front End Developer</p>
+            <div class="button">
+                <button class="edit" onclick="TampilkanData()">Edit</button> 
+                <button class="resume">Resume</button>
+            </div>
+        </div>
+        <div class="status-column">
+            <div class="info-item">
+                <span class="info-label">Availability</span><span id="userAvailability">: Full Time</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Usia</span><span id="userAge">: 19</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Lokasi</span><span id="userLocation">: Surabaya</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Pengalaman</span><span id="userExperience">: 2 Tahun</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email</span><span id="userEmail">: raihanr461@gmail.com</span>
+            </div>
+        </div>
+    </div>    
+
+    <div id="editForm">
+        <h2>Edit Profile</h2>
+        <label for="availability">Availability:</label>
+        <input type="text" id="availability" placeholder="Availability">
+    
+        <label for="role">Role:</label>
+        <input type="text" id="role" placeholder="Role">
+    
+        <label for="age">Usia:</label>
+        <input type="number" id="age" placeholder="Usia">
+    
+        <label for="location">Lokasi:</label>
+        <input type="text" id="location" placeholder="Lokasi">
+    
+        <label for="experience">Pengalaman:</label>
+        <input type="text" id="experience" placeholder="Pengalaman">
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Email">
+    
+        <button id="buttonForm" style="background-color: green; color: black;"  onclick="updateData()">Submit</button>
+        <button id="buttonForm" onclick="hideForm()">Batal</button>
+    </div>
+
+    <script>
+        function TampilkanData() {
+            document.getElementById('editForm').style.display = 'block'; 
+            
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            
+            document.getElementById('availability').value = userData.availability || document.getElementById('userAvailability').innerText.split(': ')[1];
+            document.getElementById('role').value = userData.role || document.getElementById('userRole').innerText;
+            document.getElementById('age').value = userData.age || document.getElementById('userAge').innerText.split(': ')[1];
+            document.getElementById('location').value = userData.location || document.getElementById('userLocation').innerText.split(': ')[1];
+            document.getElementById('experience').value = userData.experience || document.getElementById('userExperience').innerText.split(': ')[1];
+            document.getElementById('email').value = userData.email || document.getElementById('userEmail').innerText.split(': ')[1];
+        }
+
+        function updateData() {
+            const newAvailability = document.getElementById('availability').value;
+            const newRole = document.getElementById('role').value;
+            const newAge = document.getElementById('age').value;
+            const newLocation = document.getElementById('location').value;
+            const newExperience = document.getElementById('experience').value;
+            const newEmail = document.getElementById('email').value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(newEmail)) {
+                alert("Email tidak valid!");
+                return;
+            }
+
+            const userData = {
+                availability: newAvailability,
+                role: newRole,
+                age: newAge,
+                location: newLocation,
+                experience: newExperience,
+                email: newEmail
+            };
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            document.getElementById('userAvailability').innerText = ': ' + newAvailability;
+            document.getElementById('userRole').innerText = newRole;
+            document.getElementById('userAge').innerText = ': ' + newAge;
+            document.getElementById('userLocation').innerText = ': ' + newLocation;
+            document.getElementById('userExperience').innerText = ': ' + newExperience;
+            document.getElementById('userEmail').innerText = ': ' + newEmail;
+
+            hideForm(); 
+        }
+
+        function hideForm() {
+            document.getElementById('editForm').style.display = 'none'; 
+        }
+
+        function loadProfileData() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+
+            if (userData) {
+                document.getElementById('userAvailability').innerText = ': ' + userData.availability;
+                document.getElementById('userRole').innerText = userData.role;
+                document.getElementById('userAge').innerText = ': ' + userData.age;
+                document.getElementById('userLocation').innerText = ': ' + userData.location;
+                document.getElementById('userExperience').innerText = ': ' + userData.experience;
+                document.getElementById('userEmail').innerText = ': ' + userData.email;
+            }
+        }
+        
+        window.onload = loadProfileData;
+    </script>
+</body>
+</html>
