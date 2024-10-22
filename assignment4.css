@@ -92,3 +92,19 @@ p {
     border: 1px solid #fffbf4;
     border-radius: 4px;
 }
+
+.info-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 8px; 
+}
+
+.info-label {
+    width: 120px; 
+    font-weight: bold;
+}
+
+.info-value {
+    flex: 1;
+}
